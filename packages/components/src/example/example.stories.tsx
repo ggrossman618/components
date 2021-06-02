@@ -1,5 +1,6 @@
 import React from 'react';
 import { Example } from './example';
+import { devices, products } from 'test-data';
 
 export default {
   component: Example,
@@ -7,5 +8,7 @@ export default {
 };
 
 export const basic = () => {
+  console.log(devices);
+  console.log(products);
   return <Example name={'Foo'} />;
 };
