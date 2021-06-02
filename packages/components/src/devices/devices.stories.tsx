@@ -8,6 +8,6 @@ export default {
 };
 
 export const basic = () => {
-  const data = devices.slice(0, 1000);
+  const data = devices.slice(0, 500);
   return <Devices data={data} />;
 };
