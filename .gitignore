@@ -1,0 +1,66 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+tsconfig.lib.tsbuildinfo
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+*.styles.css.ts
+
+# altronix local config files
+.atx.config.*
+.atx.cmake.*
+compile_commands.json
+.clangd
+**/*__build__/*
+
+.bundle
+
+# TODO Once all submodules are converted into tars we do external/*
+external/cmocka*
+external/czmq*
+external/zeromq*
+external/linq-network*
+external/CMock*
+external/libusb*
+external/webview*
+external/libuv*
+
+#parcel?
+.cache
+.parcel-cache
+.rollup.cache

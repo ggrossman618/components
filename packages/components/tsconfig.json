@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es2017",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmitOnError": true,
+    "lib": ["es2017", "dom", "dom.iterable"],
+    "baseUrl": "./",
+    "declaration": true,
+    "composite": false,
+    "sourceMap": true,
+    "inlineSources": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers": true
+  },
+  "references": [
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" },
+    { "path": "./.storybook/tsconfig.json" }
+  ]
+}
