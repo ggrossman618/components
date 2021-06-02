@@ -1,14 +1,18 @@
+require('dotenv').config();
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 const { DefinePlugin } = require('webpack');
 
-const DEVICES = path.join(__dirname, 'test-data', 'devices.json');
-const PRODUCTS = path.join(__dirname, 'test-data', 'products.json');
+const { DEVICES, PRODUCTS } = process.env;
 
 const TEST_DATA = new DefinePlugin({
-  __DEVICES__: fs.readFileSync(DEVICES, 'utf8'),
-  __PRODUCTS__: fs.readFileSync(PRODUCTS, 'utf8'),
+  __DEVICES__: DEVICES
+    ? fs.readFileSync(DEVICES, 'utf8')
+    : JSON.stringify(false),
+  __PRODUCTS__: PRODUCTS
+    ? fs.readFileSync(PRODUCTS, 'utf8')
+    : JSON.stringify(false),
 });
 
 /**

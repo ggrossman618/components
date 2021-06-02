@@ -1,7 +1,9 @@
-export {};
+import { DeviceData } from '../../src/devices/devices';
+import { ProductData } from '../../src/products/products';
+
 declare global {
-  const __DEVICES__: any;
-  const __PRODUCTS__: any;
+  const __DEVICES__: DeviceData[];
+  const __PRODUCTS__: ProductData[];
 }
 
 export const devices = __DEVICES__;

@@ -34,6 +34,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+.env
 
 # System Files
 .DS_Store
@@ -41,24 +42,7 @@ Thumbs.db
 
 *.styles.css.ts
 
-# altronix local config files
-.atx.config.*
-.atx.cmake.*
-compile_commands.json
-.clangd
-**/*__build__/*
-
 .bundle
-
-# TODO Once all submodules are converted into tars we do external/*
-external/cmocka*
-external/czmq*
-external/zeromq*
-external/linq-network*
-external/CMock*
-external/libusb*
-external/webview*
-external/libuv*
 
 #parcel?
 .cache
