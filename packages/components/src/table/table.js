@@ -1,8 +1,7 @@
-import { Table } from '@material-ui/core';
+//import { Table } from '@material-ui/core';
 import React from 'react';
 
-export function table(){
-    
-}
-
-export default Table;
+export function Table(props){
+    return <p>hello from table.js</p>;
+  }
+//export default Table;

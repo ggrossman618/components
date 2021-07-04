@@ -8,7 +8,10 @@ export default {
 };
 
 export const basic = () => {
-  console.log(devices);
-  console.log(products);
-  return <Table name={'Foo'} />;
+  return (
+    <div>
+      <p>hello from stories.js</p>
+      <Table/>
+    </div>
+  );
 };
