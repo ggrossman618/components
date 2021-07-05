@@ -1,9 +1,15 @@
-//import { Table } from '@material-ui/core';
 import React from 'react';
 import ListItemText from '@material-ui/core/ListItemText';
 import DataGrid from 'react-data-grid';
+import Table from '@material-ui/core';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
-export function Table(props) {
+
+export function MyTable(props) {
   const columns = [
     { key: 'id', name: 'ID', editable: true },
     { key: 'title', name: 'Title', editable: true },
