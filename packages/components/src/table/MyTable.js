@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import ListItemText from '@material-ui/core/ListItemText';
-import DataGrid from 'react-data-grid';
+import { DataGrid } from '@material-ui/data-grid';
 import Table from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,30 +12,30 @@ import TableRow from '@material-ui/core/TableRow';
 export function MyTable(props) {
 
   const columns = [
-    { key: 'id', headerName: 'ID' },
-    { key: 'Product', headerName: 'Product' },
+    { field: 'id', headerName: 'ID', width: 100 },
+    { field: 'product', headerName: 'Product', width: 300 },
   ];
 
-
-  const columnsStatic = [
-    { key: 'id', name: 'ID', editable: true },
-    { key: 'title', name: 'Title', editable: true },
-  ];
-
-  const rows = [{ id: 0, title: 'Test row' }];
-
+  
   const products = props.productsData.map((d, index) => ({
     id: index,
-    Product: d.product,
+    product: d.product,
   }));
 
+  const rows = [
+    { id: 0, product: 'test' }
+  ]
+
   return (
+    <div style={{ height: 400, width: '100%' }}>
     <DataGrid
       rows={products}
       columns={columns}
-      defaultPageSize={5}
-      checkboxSelection
+      pageSize={10}
+      autoHeight = {true}
+      //checkboxSelection
     />
+    </div>
   );
 }
 //export default Table;
