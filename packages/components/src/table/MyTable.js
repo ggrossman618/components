@@ -10,23 +10,30 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 export function MyTable(props) {
+
   const columns = [
+    { key: 'id', headerName: 'ID' },
+    { key: 'Product', headerName: 'Product' },
+  ];
+
+
+  const columnsStatic = [
     { key: 'id', name: 'ID', editable: true },
     { key: 'title', name: 'Title', editable: true },
   ];
 
   const rows = [{ id: 0, title: 'Test row' }];
 
-  const products = props.productsData.map((d) => ({
-    id: 'Products',
-    title: d.product,
+  const products = props.productsData.map((d, index) => ({
+    id: index,
+    Product: d.product,
   }));
 
   return (
     <DataGrid
       rows={products}
       columns={columns}
-      pageSiize={5}
+      defaultPageSize={5}
       checkboxSelection
     />
   );
