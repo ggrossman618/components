@@ -16,7 +16,14 @@ export function Table(props) {
     title: d.product,
   }));
 
-  return <DataGrid rows={products} columns={columns} />;
+  return (
+    <DataGrid
+      rows={products}
+      columns={columns}
+      pageSiize={5}
+      checkboxSelection
+    />
+  );
 }
 //export default Table;
 
