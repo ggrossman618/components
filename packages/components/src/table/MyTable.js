@@ -12,14 +12,18 @@ import TableRow from '@material-ui/core/TableRow';
 export function MyTable(props) {
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'product', headerName: 'Product', width: 300 },
+    { field: 'id', headerName: 'Index', width: 150 },
+    { field: 'productId', headerName: 'ID', width: 200 },
+    { field: 'product', headerName: 'Product', width: 225 },
+    { field: 'version', headerName: 'Version', width: 125 },
   ];
 
   
   const products = props.productsData.map((d, index) => ({
-    id: index,
-    product: d.product,
+    id: index+1,
+    productId: d._id,
+    product: d.name,
+    version: d.version
   }));
 
   const rows = [
@@ -33,7 +37,7 @@ export function MyTable(props) {
       columns={columns}
       pageSize={10}
       autoHeight = {true}
-      //checkboxSelection
+      checkboxSelection
     />
     </div>
   );

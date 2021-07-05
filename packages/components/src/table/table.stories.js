@@ -11,7 +11,6 @@ export default {
 export const basic = () => {
   return (
     <div>
-      <p>hello from stories.js</p>
       <MyTable productsData={products} devicesData={devices}/>
     </div>
   );
