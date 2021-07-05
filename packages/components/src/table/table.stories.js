@@ -12,7 +12,7 @@ export const basic = () => {
   return (
     <div>
       <p>hello from stories.js</p>
-      <Table productsData={products}/>
+      <Table productsData={products} devicesData={devices}/>
     </div>
   );
 };
