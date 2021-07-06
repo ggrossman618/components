@@ -7,38 +7,46 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import logo from './logo.png';
+import Paper from '@material-ui/core/Paper';
 
 
 export function MyTable(props) {
-
   const columns = [
-    { field: 'id', headerName: 'Index', width: 150 },
+    { field: 'id', headerName: 'Index', width: 40 },
     { field: 'productId', headerName: 'ID', width: 200 },
-    { field: 'product', headerName: 'Product', width: 225 },
+    { field: 'product', headerName: 'Product Name', width: 225 },
     { field: 'version', headerName: 'Version', width: 125 },
+    { field: 'maintainer', headerName: 'Maintainer', width: 150 },
+    { field: 'fileElf', headerName: 'fileElf', width: 300 },
+    { field: 'fileWebsite', headerName: 'File Website', width: 300 },
+    { field: 'v', headerName: '__v', width: 100 },
   ];
 
-  
   const products = props.productsData.map((d, index) => ({
-    id: index+1,
+    id: index + 1,
     productId: d._id,
     product: d.name,
-    version: d.version
+    version: d.version,
+    maintainer: d.maintainer,
+    fileElf: d.fileElf,
+    fileWebsite: d.fileWebsite,
+    v: d.__v,
+    
   }));
 
-  const rows = [
-    { id: 0, product: 'test' }
-  ]
+  const rows = [{ id: 0, product: 'test' }];
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-    <DataGrid
-      rows={products}
-      columns={columns}
-      pageSize={10}
-      autoHeight = {true}
-      checkboxSelection
-    />
+      <DataGrid
+        rows={products}
+        columns={columns}
+        pageSize={15}
+        density="compact"
+        autoHeight={true}
+      />
+      
     </div>
   );
 }
