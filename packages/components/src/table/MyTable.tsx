@@ -1,14 +1,5 @@
 import * as React from 'react';
-import ListItemText from '@material-ui/core/ListItemText';
 import { DataGrid } from '@material-ui/data-grid';
-import Table from '@material-ui/core';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import logo from './logo.png';
-import Paper from '@material-ui/core/Paper';
 
 
 export function MyTable(props) {

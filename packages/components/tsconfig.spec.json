@@ -13,5 +13,5 @@
     "**/*.spec.js",
     "**/*.spec.jsx",
     "**/*.d.ts"
-  ]
+, "src/devices/devices.js", "src/devices/devices.js", "src/products/products.js"  ]
 }
