@@ -34,7 +34,7 @@ export function MyTable(props: TableData) {
   // const [_rows, setRows] = React.useState([]);
   // const [loading, setLoading] = React.useState(false);
 
-  const [searched, setSearched] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
 
   const handlePageChange = (params) => {
@@ -46,7 +46,7 @@ export function MyTable(props: TableData) {
   };
   
   const cancelSearch = () => {
-    setSearched("");
+    setSearchQuery("");
   };
 
   const columns = [
@@ -70,7 +70,7 @@ export function MyTable(props: TableData) {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <SearchBar
-        value={searched}
+        value={searchQuery}
         onChange={(searchVal) => handleSearchChange(searchVal)}
         onCancelSearch={() => cancelSearch()}
       />
