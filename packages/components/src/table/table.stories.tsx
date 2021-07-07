@@ -21,7 +21,7 @@ function loadServerRows(page: number) {
 export const basic = () => {
   return (
     <div>
-      <p>hello from stories.js</p>
+      
       <MyTable
         products={products}
         onPageChange={(n) => {
