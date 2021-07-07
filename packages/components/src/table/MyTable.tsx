@@ -82,6 +82,7 @@ export function MyTable(props: TableData) {
         density="compact"
         autoHeight={true}
         paginationMode="server"
+        sortingMode="server"
         onPageChange={handlePageChange}
         loading={props.loading}
       />
