@@ -21,9 +21,26 @@ function loadServerRows(page: number) {
 export const basic = () => {
   return (
     <div>
-      <p>hello from stories.js</p>
       <MyTable
         products={products}
+        onPageChange={(n) => {
+          console.log(
+            n,
+            'in a real app, this callback will trigger a server request'
+          );
+        }}
+      />
+    </div>
+  );
+};
+
+export const loading = () => {
+  return (
+    <div>
+      <p>hello from stories.js</p>
+      <MyTable
+        loading
+        products={[]}
         onPageChange={(n) => {
           console.log(
             n,
