@@ -1,40 +1,54 @@
 import React from 'react';
-import { MyTable } from './MyTable';
+import { TableProps } from './MyTable';
 
+async function makeRequest(
+  _page: number,
+  _search: string
+): Promise<TableProps['products']> {
+  // await (new Promise((resolve) => setTimeout(() => resolve(void), 1000)));
+  await new Promise((resolve) => setTimeout(() => resolve(null), 1000));
+  return [];
+}
 
-type ConnectTableProps = Omit<TableProps, "onPageChange" | "onSort" | "onSearch" | "data">;
+type ConnectTableProps = Omit<
+  TableProps,
+  'onPageChange' | 'onSort' | 'onSearch' | 'data'
+>;
 
-function connectTable(Component: React.FunctionComponent<TableProps>) {
-  return function (props:ConnectTableProps) {
+export function connectTable(Component: React.FunctionComponent<TableProps>) {
+  return function (props: ConnectTableProps) {
     let [page, setPage] = React.useState(0);
-    let [query, setQuery] = React.useState("");
+    let [query, setQuery] = React.useState('');
+    let [products, setProducts] = React.useState<TableProps['products']>([]);
     let [loading, setLoading] = React.useState<boolean>(false);
-    
-    function pageChange(n: number) {
-      setLoading(true);
 
-      if(n == 1 &&){
-        const data = 'forwards';
-        setPage(page+1);
-      }
-      else if(n == -1 && page-n>=0){
-        const data = 'backwards';
-        setPage(page-1);
-      }
-      else{
-        const data = 'No Change, out of bounds';
-      }
+    async function handleSearchChange(v: string) {
+      setLoading(true);
+      setQuery(v);
+      setProducts(await makeRequest(page, query));
       setLoading(false);
     }
 
-    function search(v: string) {
-        setLoading(true);
-        setQuery(v);
-        const data = "Query"
-        setQuery(data);
-        setLoading(false);
-      }
+    async function handlePageChange(n: number) {
+      setLoading(true);
 
-    return (<MyTable handlePageChange={page => pageChange(page)} handleSearchChange={query => search(query)} />)
-  }
+      if (n == 1) {
+        setPage(page + 1);
+      } else if (n == -1 && page - n >= 0) {
+        setPage(page - 1);
+      }
+      setProducts(await makeRequest(page, query));
+      setLoading(false);
+    }
+
+    return (
+      <Component
+        {...props}
+        loading={loading}
+        products={products}
+        onPageChange={handlePageChange}
+        onSearch={handleSearchChange}
+      />
+    );
+  };
 }

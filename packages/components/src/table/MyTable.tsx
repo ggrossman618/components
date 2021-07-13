@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import SearchBar from 'material-ui-search-bar';
-import { MyTableContainer } from './MyTableContainer';
 
 export interface ProductData {
   _id: string;
@@ -21,25 +20,24 @@ interface ProductDataMapped extends Omit<ProductData, '_id' | '__v'> {
   name: string;
 }
 
-export interface TableData {
+export interface TableProps {
   products: ProductData[];
   loading?: boolean;
   onPageChange: (page: number) => void;
+  onSearch: (v: string) => void;
 }
 
-
-export function MyTable(props: TableData) {
+export function MyTable(props: TableProps) {
   // NOTE most of this state is now driven by the parent component
   // const [page, setPage] = React.useState(0);
   // Rows is set from products[]
   // const [_rows, setRows] = React.useState([]);
   // const [loading, setLoading] = React.useState(false);
 
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const cancelSearch = () => {
-    setSearchQuery("");
+    setSearchQuery('');
   };
 
   const columns = [
@@ -58,13 +56,12 @@ export function MyTable(props: TableData) {
     v: d.__v.toString(),
     name: d._id,
   }));
-  
 
   return (
     <div style={{ height: 400, width: '100%' }}>
       <SearchBar
         value={searchQuery}
-        onChange={(searchVal) => handleSearchChange(searchVal)}
+        onChange={(searchVal) => props.onSearch(searchVal)}
         onCancelSearch={() => cancelSearch()}
       />
       <br />
@@ -76,7 +73,7 @@ export function MyTable(props: TableData) {
         autoHeight={true}
         paginationMode="server"
         sortingMode="server"
-        onPageChange={(page) => handlePageChange(page)}
+        onPageChange={(params) => props.onPageChange(params.page)}
         loading={props.loading}
       />
     </div>
