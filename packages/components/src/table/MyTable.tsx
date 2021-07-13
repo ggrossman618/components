@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { TablePagination } from '@material-ui/core';
 import SearchBar from 'material-ui-search-bar';
+import { MyTableContainer } from './MyTableContainer';
 
 export interface ProductData {
   _id: string;
@@ -25,7 +25,6 @@ export interface TableData {
   products: ProductData[];
   loading?: boolean;
   onPageChange: (page: number) => void;
-  onSearch: (page: string) => void;
 }
 
 
@@ -37,27 +36,8 @@ export function MyTable(props: TableData) {
   // const [loading, setLoading] = React.useState(false);
 
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [currentPageIndex, setCurrentPageIndex] = useState(0);
-
-  //const [products, setProducts] = useState<string>("");
 
 
-  const handlePageChange = (params) => {
-    if (params.page > currentPageIndex) {
-      props.onPageChange(1);
-    }
-    // If we navigate BACKWARD in our pages, i.e. the new page number is lower than current page
-    else {
-      props.onPageChange(-1);
-    }
-    setCurrentPageIndex(params.page)
-  }
-
-  
-  const handleSearchChange = (params) => {
-    props.onSearch(params.page);
-  };
-  
   const cancelSearch = () => {
     setSearchQuery("");
   };
@@ -79,7 +59,7 @@ export function MyTable(props: TableData) {
     name: d._id,
   }));
   
-  
+
   return (
     <div style={{ height: 400, width: '100%' }}>
       <SearchBar
@@ -96,8 +76,7 @@ export function MyTable(props: TableData) {
         autoHeight={true}
         paginationMode="server"
         sortingMode="server"
-        onPageChange={handlePageChange}
-        backIconButtonText="test"
+        onPageChange={(page) => handlePageChange(page)}
         loading={props.loading}
       />
     </div>
