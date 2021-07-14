@@ -2,47 +2,40 @@ import * as React from 'react';
 import { useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import SearchBar from 'material-ui-search-bar';
-import { MyTableContainer } from './MyTableContainer';
 
-export interface ProductData {
-  _id: string;
-  product: string;
-  name: string;
-  version: string;
-  maintainer: string;
-  fileWebsite: string;
-  __v: number;
-  fileElf: string;
+export interface ProductData { //layout for all data given about products
+  _id: string; //product id
+  product: string; //product string
+  name: string; //name of product
+  version: string; //version num of product
+  maintainer: string; //maintainer of product
+  fileWebsite: string; //website of product
+  __v: number; // prodcut __v
+  fileElf: string; //fileElf of Product
 }
 
-interface ProductDataMapped extends Omit<ProductData, '_id' | '__v'> {
+interface ProductDataMapped extends Omit<ProductData, '_id' | '__v'> { //ask why create productDataMapped when we have product data
   id: string;
   v: string;
   name: string;
 }
 
-export interface TableData {
-  products: ProductData[];
-  loading?: boolean;
-  onPageChange: (page: number) => void;
+export interface TableProps { // Data about table formatted for container to read
+  products: ProductData[]; //all product data (_id, version, etc.)
+  loading?: boolean; //boolean which checks if page is loading
+  onPageChange: (page: number) => void; //page change function being passed to container
+  onSearch: (v: string) => void; //search function being passed to container
 }
 
+export function MyTable(props: TableProps) { //props are data being passed down from container 
 
-export function MyTable(props: TableData) {
-  // NOTE most of this state is now driven by the parent component
-  // const [page, setPage] = React.useState(0);
-  // Rows is set from products[]
-  // const [_rows, setRows] = React.useState([]);
-  // const [loading, setLoading] = React.useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>(''); //state which keeps track of search query
 
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
-
-  const cancelSearch = () => {
-    setSearchQuery("");
+  const cancelSearch = () => { //function which resets search query
+    setSearchQuery('');
   };
 
-  const columns = [
+  const columns = [ //creating columns for ProductData
     { field: 'id', headerName: 'ID', width: 200 },
     { field: 'product', headerName: 'Product Name', width: 225 },
     { field: 'version', headerName: 'Version', width: 125 },
@@ -52,33 +45,38 @@ export function MyTable(props: TableData) {
     { field: 'v', headerName: '__v', width: 100 },
   ];
 
-  const products: ProductDataMapped[] = props.products.map((d) => ({
+  const products: ProductDataMapped[] = props.products.map((d) => ({ //mapping products and their data to const which is passed into dataGrid
     ...d,
     id: d._id,
     v: d.__v.toString(),
-    name: d._id,
+    name: d._id
   }));
-  
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <SearchBar
-        value={searchQuery}
-        onChange={(searchVal) => handleSearchChange(searchVal)}
-        onCancelSearch={() => cancelSearch()}
+      <SearchBar //creates search bar above table
+        value={searchQuery} //sets search query as 
+        onChange={(searchVal) => props.onSearch(searchVal)} //calls onChange function if search query changes
+        onCancelSearch={() => cancelSearch()} //calls onCancelSearch if query is cancled
       />
       <br />
-      <DataGrid
-        rows={products}
-        columns={columns}
-        pageSize={15}
-        density="compact"
-        autoHeight={true}
-        paginationMode="server"
-        sortingMode="server"
-        onPageChange={(page) => handlePageChange(page)}
-        loading={props.loading}
+      <DataGrid //actual table declaration
+        rows={products} //sets rows as product
+        columns={columns} //sets colums as colums
+        pageSize={15} //sets max number of rows on page as 15
+        density="compact" 
+        autoHeight={true} 
+        paginationMode="server" //sets the pagation setting to "server-side", which allows container to work
+        sortingMode="server" //sets sorting setting to "server-side"
+        onPageChange={(params) => props.onPageChange(params.page)} //when page changes, call onPageChange
+        loading={props.loading} //sets if table is loading to passed prop boolean
       />
     </div>
-  );
-}
+  )
+  }
+
+  /*
+  Questions:
+     What is ProductDataMapped used for
+     How does onPageChange work in myTable
+  */
